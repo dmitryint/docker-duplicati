@@ -11,9 +11,20 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ENV HOME /root
 
-RUN apt-get update && apt-get -y -o Dpkg::Options::="--force-confold" upgrade && \
-apt-get -y -o Dpkg::Options::="--force-confold" install mono-runtime libmono2.0-cil libmono-winforms2.0-cil expect libsqlite3-0 make && \
-apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update \
+&& apt-get -y -o Dpkg::Options::="--force-confold" install \
+	mono-runtime \
+	libmono2.0-cil \
+	libmono-winforms2.0-cil \
+	expect \
+	libsqlite3-0 \
+	make \
+	mono-devel \
+&& mozroots --import --sync \
+&& apt-get purge -y mono-devel \
+&& apt-get autoremove -y \
+&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 
 ADD ./deb/Duplicati.deb /
 RUN dpkg -i /Duplicati.deb && rm /Duplicati.deb
