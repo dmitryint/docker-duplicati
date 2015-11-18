@@ -18,9 +18,5 @@ Now, run Duplicati in docker:
 
 `docker run --rm -v /data_folder:/backup_folder:ro intersoftlab/duplicati backup /backup_folder <target url>`
 
-###Дополнительные параметры###
-
-* `-e LC_ALL=<CODEPAGE>`
-
 [Command Line Howto](https://code.google.com/p/duplicati/wiki/CommandLineHowto)
 
