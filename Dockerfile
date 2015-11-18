@@ -12,7 +12,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /root
 
 RUN apt-get update \
-apt-get -y -o Dpkg::Options::="--force-confold" install --no-install-recommends \
+&& apt-get -y -o Dpkg::Options::="--force-confold" install --no-install-recommends \
     expect \
     libsqlite3-0 \
     unzip \
