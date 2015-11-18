@@ -16,7 +16,7 @@ apt-get -y -o Dpkg::Options::="--force-confold" install --no-install-recommends 
     expect \
     libsqlite3-0 \
     unzip \
-    locales && \
+    locales \
 && mozroots --import --sync \
 && apt-get autoremove -y \
 && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
