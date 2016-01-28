@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo $1
 if [ -z "$1" ]; then
     if [ ! -n "$DUPLICATI_PASS" ]; then
       echo "ERROR- DUPLICATI_PASS must be defined"
