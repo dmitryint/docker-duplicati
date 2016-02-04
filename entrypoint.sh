@@ -4,6 +4,8 @@ for i in $@; do
 	key="$i"
 	if [ "${key:0:15}" = "--auth-username" ]; then
 	 	BACKUP_S3_KEY="${key:16}"
+	elif [ -n "echo ${key} | grep ://" ]; then
+		SERVER=$(echo ${key} | sed -r 's/^[a-zA-Z_].*:\/\/+//' | sed 's/?.*//' | sed 's/\/.*//') 
 	fi
 	if [ "${key:0:8}" = "--prefix" ]; then
 		PREFIX="${key:9}"
@@ -28,7 +30,7 @@ elif [ "$1" = "backup" ]; then
 		FOLDER=empty
 	else
 		FOLDER=full
-		if [ -e "cat /root/.config/Duplicati/dbconfig.json | jq '.[] | select (.Prefix=="${PREFIX}" and .Username=="${BACKUP_S3_KEY}") | .Databasepath'" ]; then
+		if [ -e "cat /root/.config/Duplicati/dbconfig.json | jq '.[] | select (.Prefix=="${PREFIX}" and .Username=="${BACKUP_S3_KEY}" and .Server=="${SERVER}") | .Databasepath'" ]; then
 			CHECK=full
 		else
 			CHECK=empty
@@ -42,4 +44,5 @@ elif [ "$1" = "backup" ]; then
 	fi
 	mono /app/Duplicati.CommandLine.exe $@
 fi
+
 
