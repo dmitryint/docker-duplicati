@@ -28,7 +28,7 @@ elif [ "$1" = "backup" ]; then
 		FOLDER=empty
 	else
 		FOLDER=full
-		if [ -n "cat /root/.config/Duplicati/dbconfig.json | jq '.[] | select (.Prefix=="${PREFIX}" and .Username=="${BACKUP_S3_KEY}")'" ]; then
+		if [ -e "cat /root/.config/Duplicati/dbconfig.json | jq '.[] | select (.Prefix=="${PREFIX}" and .Username=="${BACKUP_S3_KEY}") | .Databasepath'" ]; then
 			CHECK=full
 		else
 			CHECK=empty
