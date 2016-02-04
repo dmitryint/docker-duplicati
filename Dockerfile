@@ -3,8 +3,6 @@ MAINTAINER Dmitry  K "d.p.karpov@gmail.com"
 
 ENV DUPLICATI_VER 2.0.0.98_preview_2016-01-27
 
-ENV JQ_VER 1.5
-
 ENV D_TIME_ZONE Europe/Moscow
 ENV D_CODEPAGE UTF-8 
 ENV D_LANG ru_RU
@@ -32,9 +30,6 @@ apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # https://code.google.com/p/duplicati/wiki/LinuxHowto#Issues_with_,_Skydrive,_and_S3
 # /usr/bin/mozroots --import --sync 
 RUN /usr/bin/mozroots --import --sync
-
-RUN curl -sSL https://github.com/stedolan/jq/releases/download/jq-${JQ_VER}/jq-linux64 -o /usr/local/bin/jq \
-&& chmod +x /usr/local/bin/jq
 
 # Set locale (fix the locale warnings)
 RUN localedef -v -c -i ${D_LANG} -f ${D_CODEPAGE} ${D_LANG}.${D_CODEPAGE} || : && \
