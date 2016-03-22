@@ -5,7 +5,7 @@ ENV DUPLICATI_VER 2.0.1.8_canary_2016-03-20
 
 ENV D_TIME_ZONE Europe/Moscow
 ENV D_CODEPAGE UTF-8 
-ENV D_LANG ru_RU
+ENV D_LANG en_US
 
 RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup
 RUN echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache
