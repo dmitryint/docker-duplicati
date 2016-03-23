@@ -19,7 +19,7 @@ apt-get -y -o Dpkg::Options::="--force-confold" install --no-install-recommends 
     libsqlite3-0 \
     unzip \
     locales && \
-curl -sSL http://updates.duplicati.com/canary/duplicati-${DUPLICATI_VER}.zip -o /duplicati-${DUPLICATI_VER}.zip && \
+curl -sSL http://updates.duplicati.com/preview/duplicati-${DUPLICATI_VER}.zip -o /duplicati-${DUPLICATI_VER}.zip && \
 unzip duplicati-${DUPLICATI_VER}.zip -d /app && \
 apt-get purge -y --auto-remove unzip && \
 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
