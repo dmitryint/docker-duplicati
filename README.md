@@ -1,3 +1,8 @@
+# Supported tags and respective Dockerfile links #
+  - 1.3.4 [Dockerfile](https://github.com/dmitryint/docker-duplicati/blob/duplicati_1.3.4/Dockerfile)
+  - 1.3.4-dev [Dockerfile](https://github.com/dmitryint/docker-duplicati/blob/duplicati_1.3.4-dev/Dockerfile)
+  - 2.0 [Dockerfile](https://github.com/dmitryint/docker-duplicati/blob/duplicati_2.0/Dockerfile)
+  - canary, latest [Dockerfile](https://github.com/dmitryint/docker-duplicati/blob/duplicati_canary/Dockerfile)
 # Duplicati #
 Duplicati is a backup client that securely stores encrypted, incremental, compressed backups on cloud storage services and remote file servers. It works with Amazon S3, Windows Live SkyDrive, Google Drive (Google Docs), Rackspace Cloud Files or WebDAV, SSH, FTP (and many more). Duplicati is open source and free.
 
