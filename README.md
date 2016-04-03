@@ -20,9 +20,26 @@ Duplicati is licensed under LGPL and available for Windows and Linux (.NET 2.0+ 
 * Duplicati is available as application with an easy-to-use user interface and as command line tool.
 * Duplicati can make proper backups of opened or locked files using the Volume Snapshot Service (VSS) under Windows or the Logical Volume Manager (LVM) under Linux. This allows Duplicati to back up the Microsoft Outlook PST file while Outlook is running.
 
-Now, run Duplicati in docker:
+### Getting Help ###
+* [Oficial duplicati wiki](https://github.com/duplicati/duplicati/wiki)
+* Get command-line help
+```bash
+docker run --rm -it \
+    -v /root/.config/Duplicati/:/root/.config/Duplicati/ \
+    -v /data:/data \
+    -e MONO_EXTERNAL_ENCODINGS=UTF-8 \
+    intersoftlab/duplicati:canary help
+```
 
-`docker run --rm -v /data_folder:/backup_folder:ro intersoftlab/duplicati backup /backup_folder <target url>`
-
-[Command Line Howto](https://code.google.com/p/duplicati/wiki/CommandLineHowto)
+### Start duplicati with web interface ###
+To start with the web interface, run the following command:
+```bash
+docker run --rm -it \
+    -v /root/.config/Duplicati/:/root/.config/Duplicati/ \
+    -v /data:/data \
+    -e DUPLICATI_PASS=duplicatiPass \
+    -e MONO_EXTERNAL_ENCODINGS=UTF-8 \
+    -p 8200:8200 \
+    intersoftlab/duplicati:canary
+```
 
