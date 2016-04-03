@@ -33,7 +33,7 @@ RUN /usr/bin/mozroots --import --sync
 
 # Set locale (fix the locale warnings)
 RUN localedef -v -c -i ${D_LANG} -f ${D_CODEPAGE} ${D_LANG}.${D_CODEPAGE} || : && \
-update-locale LANG=${D_LANG}.${D_CODEPAGE} && \
+update-locale LANG=${D_LANG}.${D_CODEPAGE}
 
 ADD ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
