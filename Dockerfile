@@ -3,7 +3,6 @@ MAINTAINER Dmitry  K "d.p.karpov@gmail.com"
 
 ENV DUPLICATI_VER 2.0.1.9_canary_2016-03-26
 
-ENV D_TIME_ZONE Europe/Moscow
 ENV D_CODEPAGE UTF-8 
 ENV D_LANG en_US
 
@@ -34,7 +33,6 @@ RUN /usr/bin/mozroots --import --sync
 # Set locale (fix the locale warnings)
 RUN localedef -v -c -i ${D_LANG} -f ${D_CODEPAGE} ${D_LANG}.${D_CODEPAGE} || : && \
 update-locale LANG=${D_LANG}.${D_CODEPAGE} && \
-echo "${D_TIME_ZONE}" > /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
 
 ADD ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
