@@ -20,6 +20,7 @@ apt-get -y -o Dpkg::Options::="--force-confold" install --no-install-recommends 
     locales && \
 curl -sSL http://updates.duplicati.com/canary/duplicati-${DUPLICATI_VER}.zip -o /duplicati-${DUPLICATI_VER}.zip && \
 unzip duplicati-${DUPLICATI_VER}.zip -d /app && \
+rm /duplicati-${DUPLICATI_VER}.zip && \
 apt-get purge -y --auto-remove unzip && \
 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
