@@ -3,8 +3,7 @@ MAINTAINER Dmitry  K "d.p.karpov@gmail.com"
 
 ENV DUPLICATI_VER 2.0.0.99_preview_2016-02-15
 
-ENV D_TIME_ZONE Europe/Moscow
-ENV D_CODEPAGE UTF-8 
+ENV D_CODEPAGE UTF-8
 ENV D_LANG en_US
 
 RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup
@@ -21,6 +20,7 @@ apt-get -y -o Dpkg::Options::="--force-confold" install --no-install-recommends 
     locales && \
 curl -sSL http://updates.duplicati.com/preview/duplicati-${DUPLICATI_VER}.zip -o /duplicati-${DUPLICATI_VER}.zip && \
 unzip duplicati-${DUPLICATI_VER}.zip -d /app && \
+rm duplicati-${DUPLICATI_VER}.zip \
 apt-get purge -y --auto-remove unzip && \
 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -33,8 +33,7 @@ RUN /usr/bin/mozroots --import --sync
 
 # Set locale (fix the locale warnings)
 RUN localedef -v -c -i ${D_LANG} -f ${D_CODEPAGE} ${D_LANG}.${D_CODEPAGE} || : && \
-update-locale LANG=${D_LANG}.${D_CODEPAGE} && \
-echo "${D_TIME_ZONE}" > /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
+update-locale LANG=${D_LANG}.${D_CODEPAGE}
 
 ADD ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
