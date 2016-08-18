@@ -1,3 +1,5 @@
+[![](https://images.microbadger.com/badges/image/intersoftlab/duplicati.svg)](https://microbadger.com/images/intersoftlab/duplicati "Get your own image badge on microbadger.com")
+
 # Supported tags and respective Dockerfile links #
   - `1.3.4` [(Dockerfile)](https://github.com/dmitryint/docker-duplicati/blob/duplicati_1.3.4/Dockerfile)
   - `1.3.4-dev` [(Dockerfile)](https://github.com/dmitryint/docker-duplicati/blob/duplicati_1.3.4-dev/Dockerfile)
