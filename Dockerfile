@@ -1,6 +1,8 @@
 FROM mono:4
 MAINTAINER Dmitry  K "d.p.karpov@gmail.com"
 
+ADD ./entrypoint.sh /entrypoint.sh
+
 ENV DUPLICATI_VER 2.0.1.26_canary_2016-09-29
 
 ENV D_CODEPAGE UTF-8 
@@ -35,7 +37,6 @@ RUN /usr/bin/mozroots --import --sync
 RUN localedef -v -c -i ${D_LANG} -f ${D_CODEPAGE} ${D_LANG}.${D_CODEPAGE} || : && \
 update-locale LANG=${D_LANG}.${D_CODEPAGE}
 
-ADD ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 VOLUME /root/.config/Duplicati/
