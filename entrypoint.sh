@@ -8,8 +8,9 @@ if [ ! "$(ls -l ${DUPLICATI_DATADIR}/*.sqlite 2>/dev/null |wc -l)" -gt "0" ]; th
 
 	for f in /docker-entrypoint-init.d/*; do
 		case "$f" in
-			*.sh)     echo "$0: running $f"; . "$f" ;;
-			*)        echo "$0: ignoring $f" ;;
+			*.sh)		echo "$0: running $f"; . "$f" ;;
+			*.sqlite)   echo "$0: copying $f"; cp "$f" ${DUPLICATI_DATADIR}/ ;;
+			*)        	echo "$0: ignoring $f" ;;
 		esac
 		echo
 	done
