@@ -14,7 +14,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ENV HOME /root
 
-RUN echo 'Acquire::ForceIPv4 "true";' | sudo tee /etc/apt/apt.conf.d/99force-ipv4 && \
+RUN echo 'Acquire::ForceIPv4 "true";' | tee /etc/apt/apt.conf.d/99force-ipv4 && \
 apt-get update && \
 apt-get -y -o Dpkg::Options::="--force-confold" install --no-install-recommends \
     expect \
