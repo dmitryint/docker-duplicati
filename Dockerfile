@@ -14,7 +14,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ENV HOME /root
 
-RUN apt-get update && \
+RUN echo 'Acquire::ForceIPv4 "true";' | sudo tee /etc/apt/apt.conf.d/99force-ipv4 && \
+apt-get update && \
 apt-get -y -o Dpkg::Options::="--force-confold" install --no-install-recommends \
     expect \
     libsqlite3-0 \
@@ -37,9 +38,12 @@ RUN /usr/bin/mozroots --import --sync
 RUN localedef -v -c -i ${D_LANG} -f ${D_CODEPAGE} ${D_LANG}.${D_CODEPAGE} || : && \
 update-locale LANG=${D_LANG}.${D_CODEPAGE}
 
+RUN mkdir -p /docker-entrypoint-init.d
 RUN chmod +x /entrypoint.sh
 
-VOLUME /root/.config/Duplicati/
+VOLUME /root/.config/Duplicati
+VOLUME /docker-entrypoint-init.d
+
 EXPOSE 8200
 ENTRYPOINT ["/entrypoint.sh"]
 
