@@ -45,3 +45,6 @@ docker run --rm -it \
     intersoftlab/duplicati:canary
 ```
 
+### Initializing a fresh instance ###
+When a container is started for the first time, it will execute files with extensions .sh, .sqlite that are found in `/docker-entrypoint-init.d`. Files will be executed in alphabetical order.
+You can easily populate your Duplicati configuration by mounting configuration files into that directory.
