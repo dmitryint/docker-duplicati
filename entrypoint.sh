@@ -3,12 +3,24 @@
 DUPLICATI_CMD='mono /app/Duplicati.CommandLine.exe'
 DUPLICATI_DATADIR=/root/.config/Duplicati
 
-if [ ! "$(ls -l ${DUPLICATI_DATADIR}/*.sqlite 2>/dev/null |wc -l)" -gt "0" ]; then
-	echo 'Init process in progress...'
+if [ ! -f "/.init_complete" ]; then
+	echo 'Runing Duplicati Init scripts...'
 
 	for f in /docker-entrypoint-init.d/*; do
 		case "$f" in
 			*.sh)		echo "$0: running $f"; . "$f" ;;
+			*)        	echo "$0: ignoring $f" ;;
+		esac
+		echo
+	done
+	touch /.init_complete
+fi
+
+if [ ! "$(ls -l ${DUPLICATI_DATADIR}/*.sqlite 2>/dev/null |wc -l)" -gt "0" ]; then
+	echo 'Copying initial configs...'
+
+	for f in /docker-entrypoint-init.d/*; do
+		case "$f" in
 			*.sqlite)   echo "$0: copying $f"; cp "$f" ${DUPLICATI_DATADIR}/ ;;
 			*)        	echo "$0: ignoring $f" ;;
 		esac
