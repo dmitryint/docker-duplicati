@@ -3,7 +3,7 @@ MAINTAINER Dmitry  K "d.p.karpov@gmail.com"
 
 ADD ./entrypoint.sh /entrypoint.sh
 
-ENV DUPLICATI_VER 2.0.1.48_canary_2017-02-23
+ENV DUPLICATI_VER 2.0.1.52_canary_2017-03-13
 
 ENV D_CODEPAGE UTF-8 
 ENV D_LANG en_US
