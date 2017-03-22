@@ -19,7 +19,7 @@ RUN apt-get -o Acquire::ForceIPv4=true -o Acquire::http::No-Cache=True update &&
     rm /duplicati-${DUPLICATI_VER}.zip && \
     localedef -v -c -i ${D_LANG} -f ${D_CODEPAGE} ${D_LANG}.${D_CODEPAGE} || : && \
     update-locale LANG=${D_LANG}.${D_CODEPAGE} && \
-    /usr/bin/mozroots --import --sync && \
+    cert-sync /etc/ssl/certs/ca-certificates.crt && \
     apt-get purge -y --auto-remove unzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
