@@ -25,6 +25,7 @@ ExecStart=/bin/sh -c "docker run --rm -i --name ${INSTANCE} \
 -e DUPLICATI_PASS=${PASSWORD} \
 -e MONO_EXTERNAL_ENCODINGS=UTF-8 \
 ${IMAGE}"
+ExecStop=/bin/sh -c "docker stop ${INSTANCE}"
 TimeoutStartSec=0
 TimeoutStopSec=20s
 SuccessExitStatus=0 1 2
