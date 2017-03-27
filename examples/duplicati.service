@@ -1,0 +1,33 @@
+[Unit]
+Description=Duplicati service
+Requires=docker.service
+After=docker.service
+[Service]
+Environment="TARGET=/"
+Environment="PASSWORD=123456"
+Environment="BIND_HOST=127.0.0.1"
+Environment="BIND_PORT=8200"
+Environment="INSTANCE=duplicati"
+Environment="IMAGE=intersoftlab/duplicati:canary"
+Environment="METADATA_VOL=duplicati-metadata"
+Environment="MEMORY=256m"
+Environment="CPU_SHARES=512"
+# Pull docker image each time
+# ExecStartPre=-/usr/bin/docker pull ${IMAGE}
+ExecStartPre=-/bin/sh -c "docker rm -f ${INSTANCE} >/dev/null 2>&1"
+ExecStart=/bin/sh -c "docker run --rm -i --name ${INSTANCE} \
+-m=${MEMORY} \
+--cpu-shares=${CPU_SHARES} \
+-p ${BIND_HOST}:${BIND_PORT}:8200 \
+-v ${METADATA_VOL}:/root/.config/Duplicati \
+-v ${TARGET}:/data \
+-v /tmp \
+-e DUPLICATI_PASS=${PASSWORD} \
+-e MONO_EXTERNAL_ENCODINGS=UTF-8 \
+${IMAGE}"
+ExecStop=/bin/sh -c "docker stop ${INSTANCE}"
+TimeoutStartSec=0
+TimeoutStopSec=20s
+SuccessExitStatus=0 1 2
+[Install]
+WantedBy=multi-user.target
