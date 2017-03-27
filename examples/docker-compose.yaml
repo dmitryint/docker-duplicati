@@ -1,0 +1,22 @@
+version: "2"
+
+services:
+
+  duplicati:
+    image: intersoftlab/duplicati:canary
+    ports:
+      - "127.0.0.1:8200:8200"
+    restart: always
+    cpu_shares: 512
+    mem_limit: 256m
+    environment:
+      DUPLICATI_PASS: "123456"
+      MONO_EXTERNAL_ENCODINGS: "UTF-8"
+    volumes:
+      - "duplicati-metadata:/root/.config/Duplicati"
+      - "/:/data"
+    tmpfs:
+      - "/tmp"
+
+volumes:
+  duplicati-metadata:
