@@ -1,4 +1,4 @@
-FROM mono:4
+FROM mono:4.6
 MAINTAINER Dmitry  K "d.p.karpov@gmail.com"
 
 ENV DUPLICATI_VER 2.0.1.55_canary_2017-04-06
