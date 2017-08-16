@@ -55,8 +55,8 @@ You can easily populate your Duplicati configuration by mounting configuration f
 
 ### Known errors ###
 
-- *Error massage* `The authorization header is malformed; the Credential is mal-formed; expecting "/YYYYMMDD/REGION/SERVICE/aws4_request".`
+- **Error massage:** `The authorization header is malformed; the Credential is mal-formed; expecting "/YYYYMMDD/REGION/SERVICE/aws4_request".`
 
-  *Discussion there:* https://github.com/duplicati/duplicati/issues/2603
+  **Discussion there:** https://github.com/duplicati/duplicati/issues/2603
 
-  *Workaround:* start Docker container with the following option: `-v /etc/localtime:/etc/localtime:ro`
+  **Workaround:** start Docker container with the following option: `-v /etc/localtime:/etc/localtime:ro`
