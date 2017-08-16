@@ -2,6 +2,7 @@ FROM mono:4.6
 MAINTAINER Dmitry  K "d.p.karpov@gmail.com"
 
 ENV DUPLICATI_VER 2.0.2.1_beta_2017-08-01
+ENV DUPLICATI_BRANCH beta
 
 ENV D_CODEPAGE UTF-8 
 ENV D_LANG en_US
@@ -14,7 +15,7 @@ RUN apt-get -o Acquire::ForceIPv4=true -o Acquire::http::No-Cache=True update &&
         libsqlite3-0 \
         unzip \
         locales && \
-    curl -sSL https://updates.duplicati.com/canary/duplicati-${DUPLICATI_VER}.zip -o /duplicati-${DUPLICATI_VER}.zip && \
+    curl -sSL https://updates.duplicati.com/${DUPLICATI_BRANCH}/duplicati-${DUPLICATI_VER}.zip -o /duplicati-${DUPLICATI_VER}.zip && \
     unzip duplicati-${DUPLICATI_VER}.zip -d /app && \
     rm /duplicati-${DUPLICATI_VER}.zip && \
     localedef -v -c -i ${D_LANG} -f ${D_CODEPAGE} ${D_LANG}.${D_CODEPAGE} || : && \
