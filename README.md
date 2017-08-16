@@ -52,3 +52,11 @@ Here you can see more [examples](examples).
 ### Initializing a fresh instance ###
 When a container is started for the first time, it will execute files with extensions .sh, .sqlite that are found in `/docker-entrypoint-init.d`. Files will be executed in alphabetical order.
 You can easily populate your Duplicati configuration by mounting configuration files into that directory.
+
+### Known errors ###
+
+- **Error massage:** `The authorization header is malformed; the Credential is mal-formed; expecting "/YYYYMMDD/REGION/SERVICE/aws4_request".`
+
+  **Discussion there:** https://github.com/duplicati/duplicati/issues/2603
+
+  **Workaround:** start Docker container with the following option: `-v /etc/localtime:/etc/localtime:ro`
